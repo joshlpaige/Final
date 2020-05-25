@@ -1,0 +1,34 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block mainblock %}
+
+
+<div class="row">
+    <div class="col-sm-6 col-lg-3">
+       
+        <a href="/panel/news/add" class="widget widget-hover-effect1">
+            <div class="widget-simple">
+                <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+                    <i class="fa fa-file-text"></i>
+                </div>
+                <h3 class="widget-content text-right animation-pullDown">
+                    New <strong>Article</strong><br>
+                    <small>Write Something!</small>
+                </h3>
+            </div>
+        </a>
+    
+    </div>
+   
+    
+</div>
+
+
+
+{% endblock %}
+
+{% block footerblock %}
+  <script src="{% static 'back/js/pages/index.js' %}"></script>
+  <script>$(function(){ Index.init(); });</script>
+        {% endblock %}

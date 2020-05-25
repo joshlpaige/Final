@@ -1,0 +1,24 @@
+{% extends 'front/base2.html' %}
+
+{% block headblock %}
+<title>{{ site.name }} | Slay the Dragon</title>
+{% endblock %}
+
+{% block mainblock %}
+
+
+
+<div class="webgl-content">
+    <div id="gameContainer" style="width: 960px; height: 600px"></div>
+    <div class="footer">
+      <div class="webgl-logo"></div>
+      <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+      <div class="title">Slay the Dragon</div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,110 @@
+{% extends 'front/base.html' %}
+{% load static %}
+
+{% block headblock %}
+<title>{{ site.name }} | About</title>
+{% endblock %}
+
+{% block mainblock %}
+
+	
+	<div class="container">
+		<div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+			<div class="f2-s-1 p-r-30 m-tb-6">
+				<a href="/" class="breadcrumb-item f1-s-3 cl9">
+					Home 
+				</a>
+
+				<span class="breadcrumb-item f1-s-3 cl9">
+					About Me
+				</span>
+			</div>
+
+			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">
+				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" name="search" placeholder="Search">
+				<button class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
+					<i class="zmdi zmdi-search"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="container p-t-4 p-b-35">
+		<h2 class="f1-l-1 cl2">
+			
+		</h2>
+    </div>
+    
+
+
+	
+	<section class="bg0 p-b-110">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-7 col-lg-8 p-b-30">
+					<div class="p-r-10 p-r-0-sr991">
+						<p class="f1-s-11 cl6 p-b-25">
+              {{site.abouttxt|safe}}
+						</p>
+					</div>
+				</div>
+				
+				
+				<div class="col-md-5 col-lg-4 p-b-30">
+					<div class="p-l-10 p-rl-0-sr991 p-t-5">
+						<div>
+							
+
+                            <div class="card">
+                                <div class="ds-top"></div>
+                                <div class="avatar-holder">
+                                  <img src="https://pbs.twimg.com/profile_images/968959598181961728/KWj2QsDB_400x400.jpg" alt="Josh">
+                                </div>
+                                <div class="name">
+                                  <a href="https://twitter.com/joshlpaige" target="_blank">Josh Paige</a>
+                                  <h6 title="Followers"><i class="fas fa-users"></i> <span class="followers">0</span></h6>
+                                </div>
+                                <div class="button">
+                                  <a href="#" class="btn" onmousedown="follow();">Follow <i class="fas fa-user-plus"></i></a>
+                                </div>
+                                <div class="ds-info">
+                                  <div class="ds pens">
+                                    <h6 title="Josh's Twitter"><a href="https://twitter.com/joshlpaige" target="_blank">Twitter </a><i class="fab fa-twitter"></i></h6>
+                                  </div>
+                                  <div class="ds projects">
+                                    <h6 title="Josh's Github"><a href="https://github.com/joshlpaige/" target="_blank">Github </a><br><i class="fab fa-github"></i></h6>
+                                  </div>
+                                  <div class="ds posts">
+                                    <h6 title="Josh's linkedin"><a href="https://www.linkedin.com/in/josh-paige-95219436/" target="_blank">Linkedin </a><i class="fab fa-linkedin"></i></h6>
+                                  </div>
+                                </div>
+                                <div class="ds-skill">
+                                  <h6>Skill <i class="fas fa-code" aria-hidden="true"></i></h6>
+                                  <div class="skill html">
+                                    <h6><i class="fab fa-html5"></i> HTML </h6>
+                                    <div class="bar bar-html">
+                                      <p>55%</p>
+                                    </div>
+                                  </div>
+                                  <div class="skill css">
+                                    <h6><i class="fab fa-css3"></i> CSS </h6>
+                                    <div class="bar bar-css">
+                                      <p>50%</p>
+                                    </div>
+                                  </div>
+                                  <div class="skill javascript">
+                                    <h6><i class="fab fa-js-square"></i> JavaScript </h6>
+                                    <div class="bar bar-js">
+                                      <p>25%</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
