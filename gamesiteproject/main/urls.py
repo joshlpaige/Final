@@ -17,5 +17,6 @@ urlpatterns = [
     path('contact/submit', views.msgbox, name='msgbox'),
     path('panel/change/pass/', views.change_pass, name='change_pass'),
     path('register/', views.myregister, name='myregister'),
+    re_path(r'^all/news/(?P<word>.*)/$', views.news_all_show, name='news_all_show'),
 
 ]

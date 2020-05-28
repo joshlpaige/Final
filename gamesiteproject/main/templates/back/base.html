@@ -65,58 +65,17 @@
                                 </div>
                             </div>
                            
-                            <ul class="sidebar-section sidebar-themes clearfix sidebar-nav-mini-hide">
-                         
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-night themed-border-night" data-theme="{% static 'back/css/themes/night.css' %}" data-toggle="tooltip" title="Night"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-amethyst themed-border-amethyst" data-theme="{% static 'back/css/themes/amethyst.css' %}" data-toggle="tooltip" title="Amethyst"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-modern themed-border-modern" data-theme="{% static 'back/css/themes/modern.css' %}" data-toggle="tooltip" title="Modern"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-autumn themed-border-autumn" data-theme="{% static 'back/css/themes/autumn.css' %}" data-toggle="tooltip" title="Autumn"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-flatie themed-border-flatie" data-theme="{% static 'back/css/themes/flatie.css' %}" data-toggle="tooltip" title="Flatie"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-spring themed-border-spring" data-theme="{% static 'back/css/themes/spring.css' %}" data-toggle="tooltip" title="Spring"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-fancy themed-border-fancy" data-theme="{% static 'back/css/themes/.css' %}" data-toggle="tooltip" title="Fancy"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-fire themed-border-fire" data-theme="{% static 'back/css/themes/fire.css' %}" data-toggle="tooltip" title="Fire"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-coral themed-border-coral" data-theme="{% static 'back/css/themes/coral.css' %}" data-toggle="tooltip" title="Coral"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-lake themed-border-lake" data-theme="{% static 'back/css/themes/lake.css' %}" data-toggle="tooltip" title="Lake"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-forest themed-border-forest" data-theme="{% static 'back/css/themes/forest.css' %}" data-toggle="tooltip" title="Forest"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-waterlily themed-border-waterlily" data-theme="{% static 'back/css/themes/waterlily.css' %}" data-toggle="tooltip" title="Waterlily"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-emerald themed-border-emerald" data-theme="{% static 'back/css/themes/emerald.css' %}" data-toggle="tooltip" title="Emerald"></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" class="themed-background-dark-blackberry themed-border-blackberry" data-theme="{% static 'back/css/themes/blackberry.css' %}" data-toggle="tooltip" title="Blackberry"></a>
-                                </li>
-                            </ul>
+                            
                           
                             <ul class="sidebar-nav">
                                 
-                                
+                                {% if perms.main.master_user %}
                                 <li>
                                     <a href="/panel" class=" active"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
                                 </li>
+                                {% endif %}
+
+                                {% if request.user|has_group:"masteruser" %}
                                
                             
                                 <li class="sidebar-header">
@@ -173,6 +132,8 @@
                                         <li>
                                             <a href="/panel/manager/list/" class=""><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Manager List</span></a>
                                         </li>
+
+                                    {% endif %}
     
 
                                 <li class="sidebar-header">

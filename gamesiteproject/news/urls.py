@@ -12,6 +12,4 @@ urlpatterns = [
     re_path(r'^urls/(?P<pk>\d+)/$', views.news_detail_short, name='news_detail_short'),
     re_path(r'^all/news/(?P<word>.*)/$', views.news_all_show, name='news_all_show'),
 
-
-
 ]

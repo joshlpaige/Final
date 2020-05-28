@@ -1,180 +1,61 @@
-
 {% extends 'front/base.html' %}
+
 {% load static %}
+
+
 
 {% block headblock %}
 <title>{{site.name}} | Home</title>
 {% endblock %}
 
+
+
+
+
 {% block mainblock %}
 
 
-
-<section class="bg0">
-    <div class="row m-rl-0 justify-content-center">
-
-        {% for lastnews in lastnews %}
-        <div class="col-md-4 p-rl-1 p-b-2">
-            <div class="bg-img1 size-a-11 how1 pos-relative" style="background-image: url({{lastnews.picurl}});">
-                <a href="{%url 'news_detail' word=lastnews.name %}" class="dis-block how1-child1 trans-03"></a>
-
-                <div class="flex-col-e-s s-full p-rl-25 p-tb-18">
-                    <a href=""
-                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                        {{lastnews.catname}}
-                    </a>
-
-                    <h3 class="how1-child2 m-t-14 m-b-10">
-                        <a href="blog-detail-02.html" class="f1-l-1 cl0 hov-cl10 trans-03 respon1">
-                            {{lastnews.name}}
-                        </a>
-                    </h3>
-                </div> 
-            </div>
-        </div>
-        {% endfor %}
+	<section class="bg0">
+		<div class="row m-rl-0 justify-content-center">
 
 
-    </div>
+			{% for lastnews in lastnews %}
+			<div class="col-md-4 p-rl-1 p-b-2">
+				<div class="bg-img1 size-a-11 how1 pos-relative" style="background-image: url({{lastnews.picurl}});">
+					<a href="{%url 'news_detail' word=lastnews.name %}" class="dis-block how1-child1 trans-03"></a>
+
+					<div class="flex-col-e-s s-full p-rl-25 p-tb-18">
+						<a href="#" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+							{{lastnews.catname}}
+						</a>
+
+						<h3 class="how1-child2 m-t-14 m-b-10">
+							<a href="{%url 'news_detail' word=lastnews.name %}"" class="f1-l-1 cl0 hov-cl10 trans-03 respon1">
+								{{lastnews.name}}
+							</a>
+						</h3>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+
+		
+		</div>
 </section>
-
-
-<section class="post bg0 p-t-85">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-12">
-                <div class="p-r-10 p-rl-0-sr991 p-b-20">
-                    
-                    {% for newscat in cat %}
-                    {% if newscat.count != 0 %}
-                
-                
-                <div class="p-b-25 m-r--10 m-r-0-sr991">
-                    <div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
-                        <h3 class="f1-m-2 cl17 tab01-title">
-                            {{newscat.name}}
-                        </h3>
-                    </div>
-
-                    <div class="flex-wr-sb-s p-t-35">
-
-                        {% for ab in news1 %}
-                        {% if newscat.pk == ab.ocatid %}
-
-                        <div class="size-w-6 w-full-sr575">
-                           
-                            <div class="m-b-30">
-                                <a href="{%url 'news_detail' word=ab.name %}" class="wrap-pic-w hov1 trans-03">
-                                    <img src="{{ab.picurl}}" alt="IMG">
-                                </a>
-
-                                <div class="p-t-25">
-                                    <h5 class="p-b-5">
-                                        <a href="{%url 'news_detail' word=ab.name %}" class="f1-m-3 cl2 hov-cl10 trans-03">
-                                            {{ab.name}}
-                                        </a>
-                                        <p class="f1-s-1 cl6 p-t-18">
-                                            {{ab.short_txt|safe}}
-                                        </p>
-                                    </h5>
-
-                                    <span class="cl8">
-                                        
-                                        <a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-                                            {{ab.catname}}
-                                        </a>
-
-                                        <span class="f1-s-3 m-rl-3">
-                                            -
-                                        </span>
-
-                                        <span class="f1-s-3">
-                                            {{ab.date}}
-                                        </span>
-                                    </span>
-
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        {% endif %}
-                        {% endfor %}
-
-                        <div class="size-w-7 w-full-sr575">
-                                
-                            {% for pops in popnews3 %}
-                            {% if pops.ocatid == newscat.pk %}
-                            {% if pops.show != 0 %}
-                            <div class="m-b-30">
-                                <a href="{%url 'news_detail' word=pops.name %}" class="wrap-pic-w hov1 trans-03">
-                                    <img src="{{pops.picurl}}" alt="IMG">
-                                </a>
-
-                                <div class="p-t-10">
-                                    <h5 class="p-b-5">
-                                        <a href="{%url 'news_detail' word=pops.name %}" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                            {{pops.name}}
-                                        </a>
-                                    </h5>
-
-                                    <span class="cl8">
-                                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                            {{pops.catname}}
-                                        </a>
-
-                                        <span class="f1-s-3 m-rl-3">
-                                            -
-                                        </span>
-
-                                        <span class="f1-s-3">
-                                            {{pops.date}}
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endif %}
-                            {% endfor %}
-
-                            
-                            
-                        </div>
-                    </div>
-                </div>
-
-                    
-                    {% endif %}
-                    {% endfor %}
-
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-</section>
-
-
-
-\
-
-
-
 
 <section class="bg0 p-t-60 p-b-40">
-    <div class="container">
-        <div class="how2 how2-cl4 flex-s-c">
-            <h3 class="f1-m-2 cl3 tab01-title">
-                Latest 
-            </h3>
-        </div>
+	<div class="container">
+		<div class="how2 how2-cl4 flex-s-c">
+			<h3 class="f1-m-2 cl3 tab01-title">
+				Latest News
+			</h3>
+		</div>
 
-        <div class="row p-t-35">
+		<div class="row p-t-35">
 
-            {% for i in news %}
+			{% for i in news %}
 			<div class="col-sm-6 col-md-4">
-					
+				
 				<div class="m-b-45">
 					<a href="{%url 'news_detail' word=i.name %}" class="wrap-pic-w hov1 trans-03">
 						<img style="display: inline-block; width:330px; height:240px;" src="{{i.picurl}}" alt="IMG">
@@ -215,5 +96,118 @@
 </section>
 
 
-{% endblock %}
 
+<section class="post bg0 p-t-85">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12 col-lg-12">
+				<div class="p-r-10 p-rl-0-sr991 p-b-20">
+					
+						{% for newscat in cat %}
+						{% if newscat.count != 0 %}
+					
+				
+					<div class="p-b-25 m-r--10 m-r-0-sr991">
+						<div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
+							<h3 class="f1-m-2 cl17 tab01-title">
+								{{newscat.name}}
+							</h3>
+						</div>
+
+						<div class="row p-t-35">
+							<div class="col-sm-6 p-r-25 p-r-15-sr991">
+									
+
+								{% for ab in news %}
+								{% if newscat.pk == ab.ocatid %}
+								<div class="flex-wr-sb-s m-b-30">
+									<a href="{%url 'news_detail' word=ab.name %}" class="size-w-1 wrap-pic-w hov1 trans-03">
+										<img src="{{ab.picurl}}" alt="IMG">
+									</a>
+
+									<div class="size-w-2">
+										<h5 class="p-b-5">
+											<a href="{%url 'news_detail' word=ab.name %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+												{{ab.name}}
+											</a>
+										</h5>
+
+										<span class="cl8">
+											<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+												{{ab.catname}}
+											</a>
+
+											<span class="f1-s-3 m-rl-3">
+												-
+											</span>
+
+											<span class="f1-s-3">
+												{{ab.date}} | {{ab.time}}
+											</span>
+										</span>
+									</div>
+								</div>
+								{% endif %}
+								{% endfor %}
+								
+							
+
+							
+							</div>
+
+							<div class="col-sm-6 p-r-25 p-r-15-sr991">
+                                Popular News
+                                <br><br>
+
+								{% for pop in popnews %}
+								{% if pop.ocatid == newscat.pk %}
+								{% if pop.show != 0 %}
+								<div class="flex-wr-sb-s m-b-30">
+									<a href="{%url 'news_detail' word=pop.name %}" class="size-w-1 wrap-pic-w hov1 trans-03">
+										<img src="{{pop.picurl}}" alt="IMG">
+									</a>
+
+									<div class="size-w-2">
+										<h5 class="p-b-5">
+											<a href="{%url 'news_detail' word=pop.name %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+												{{pop.name}}
+											</a>
+										</h5>
+
+										<span class="cl8">
+											<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+												{{pop.catname}}
+											</a>
+
+											<span class="f1-s-3 m-rl-3">
+												-
+											</span>
+
+											<span class="f1-s-3">
+												{{pop.date}}
+											</span>
+										</span>
+									</div>
+								</div>
+								{% endif %}
+								{% endif %}
+								{% endfor %}
+
+						
+
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+
+				</div>
+			</div>
+
+		
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}

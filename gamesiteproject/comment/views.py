@@ -64,7 +64,7 @@ def comments_list(request):
         return redirect('mylogin')
     
 
-    ''' perm = 0
+    perm = 0
     for i in request.user.groups.all():
         if i.name == "masteruser" : perm = 1
 
@@ -72,7 +72,7 @@ def comments_list(request):
         a = News.objects.get(pk=pk).writer
         if str(a) != str(request.user) :
             error = "Access Denied"
-            return render(request, 'back/error.html' , {'error':error}) '''
+            return render(request, 'back/error.html' , {'error':error})
     
 
     comment = Comment.objects.all()
@@ -88,7 +88,7 @@ def comments_del(request,pk):
         return redirect('mylogin')
     
 
-    ''' perm = 0
+    perm = 0
     for i in request.user.groups.all():
         if i.name == "masteruser" : perm = 1
 
@@ -96,7 +96,7 @@ def comments_del(request,pk):
         a = News.objects.get(pk=pk).writer
         if str(a) != str(request.user) :
             error = "Access Denied"
-            return render(request, 'back/error.html' , {'error':error}) '''
+            return render(request, 'back/error.html' , {'error':error})
     
 
     comment = Comment.objects.filter(pk=pk)
@@ -112,7 +112,7 @@ def comments_confirm(request,pk):
         return redirect('mylogin')
     
 
-    ''' perm = 0
+    perm = 0
     for i in request.user.groups.all():
         if i.name == "masteruser" : perm = 1
 
@@ -120,7 +120,7 @@ def comments_confirm(request,pk):
         a = News.objects.get(pk=pk).writer
         if str(a) != str(request.user) :
             error = "Access Denied"
-            return render(request, 'back/error.html' , {'error':error}) '''
+            return render(request, 'back/error.html' , {'error':error})
     
 
     comment = Comment.objects.get(pk=pk)

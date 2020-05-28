@@ -6,6 +6,9 @@ import datetime
 from subcat.models import SubCat
 from cat.models import Cat
 from trending.models import Trending
+import random
+from comment.models import Comment
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -37,12 +40,14 @@ def news_detail(request,word):
         print("nope")
     
     code = News.objects.get(name=word).pk
+    comment = Comment.objects.filter(news_id=code, status=1).order_by('-pk')
+    cmcount = len(comment)
     
-    return render(request, 'front/news_detail.html', {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'shownews':shownews, 'popnews':popnews, 'popnews2':popnews2, 'tag':tag, 'trending':trending, 'code':code})
+    return render(request, 'front/news_detail.html', {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'shownews':shownews, 'popnews':popnews, 'popnews2':popnews2, 'tag':tag, 'trending':trending, 'code':code, 'comment':comment, 'cmcount':cmcount})
 
 def news_detail_short(request,pk):
     
-    site = Main.objects.get(pk=2)
+    site = Main.objects.get(pk=1)
     news = News.objects.all().order_by('-pk')
     cat = Cat.objects.all()
     subcat = SubCat.objects.all()
@@ -290,14 +295,14 @@ def news_all_show(request,word):
     catid = Cat.objects.get(name=word).pk
     allnews = News.objects.filter(ocatid=catid)
 
-    site = Main.objects.get(pk=2)
-    news = News.objects.filter(act=1).order_by('-pk')
+    site = Main.objects.get(pk=1)
+    news = News.objects.filter().order_by('-pk')
     cat = Cat.objects.all()
     subcat = SubCat.objects.all()
-    lastnews = News.objects.filter(act=1).order_by('-pk')[:3]
-    popnews = News.objects.filter(act=1).order_by('-show')
-    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
+    lastnews = News.objects.filter().order_by('-pk')[:3]
+    popnews = News.objects.filter().order_by('-show')
+    popnews2 = News.objects.filter().order_by('-show')[:3]
     trending = Trending.objects.all().order_by('-pk')[:5]
-    lastnews2 = News.objects.filter(act=1).order_by('-pk')[:4]
+    lastnews2 = News.objects.filter().order_by('-pk')[:4]
 
     return render(request, 'front/all_news.html', {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'popnews':popnews, 'popnews2':popnews2, 'trending':trending, 'lastnews2':lastnews2, 'allnews':allnews})

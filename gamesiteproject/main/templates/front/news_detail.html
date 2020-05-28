@@ -19,7 +19,7 @@
 
 {% for i in shownews %}
 
-<!-- Breadcrumb -->
+
 <div class="container">
     <div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
         <div class="f2-s-1 p-r-30 m-tb-6">
@@ -45,13 +45,13 @@
     </div>
 </div>
 
-<!-- Content -->
+
 <section class="bg0 p-b-140 p-t-10">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8 p-b-30">
                 <div class="p-r-10 p-r-0-sr991">
-                    <!-- Blog Detail -->
+                    
                     <div class="p-b-70">
                         <a href="#" class="f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">
                             {{i.catname}}
@@ -60,6 +60,10 @@
                         <h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2">
                             {{i.name}}
                         </h3>
+
+                        <h5>{{i.short_txt|safe}}</h5>
+
+                        <br>
                         
                         <div class="flex-wr-s-s p-b-40">
                             <span class="f1-s-3 cl8 m-r-15">
@@ -79,12 +83,13 @@
                             </span>
 
                             <a href="#" class="f1-s-3 cl8 hov-cl10 trans-03 m-r-15">
-                                0 Comment
+                                {{cmcount}} Comment(s)
                             </a>
                         </div>
 
                         <div class="wrap-pic-max-w p-b-30">
                             <img src="{{i.picurl}}" alt="IMG">
+                            
                         </div>
 
                         <p align='justify' class="f1-s-11 cl6 p-b-25">
@@ -112,7 +117,7 @@
 							{% for cm in comment %}
 
 							<h4 class="f1-l-4 cl3 p-b-12">
-									{{cm.name}} | {{cm.date}} & {{cm.time}}
+									{{cm.name}} |
 								</h4>
 	
 								<p class="f1-s-13 cl8 p-b-40">
@@ -127,7 +132,7 @@
 
 
 
-                    <!-- Leave a comment -->
+                    
                     <div>
                         <h4 class="f1-l-4 cl3 p-b-12">
                             Leave a Comment
@@ -169,10 +174,10 @@
                 </div>
             </div>
             
-            <!-- Sidebar -->
+            
             <div class="col-md-10 col-lg-4 p-b-30">
                 <div class="p-l-10 p-rl-0-sr991 p-t-70">						
-                    <!-- Category -->
+                 
                     <div class="p-b-60">
                         <div class="how2 how2-cl4 flex-s-c">
                             <h3 class="f1-m-2 cl3 tab01-title">
@@ -187,7 +192,7 @@
                             {% if p.count != 0 %}
 
                             <li class="how-bor3 p-rl-4">
-                                <a href="#" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
+                                <a href="{% url 'news_all_show' word=p.name %}" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
                                         {{p.name}} ({{p.count}})
                                 </a>
                             </li>
@@ -200,7 +205,7 @@
 
                     
 
-                    <!-- Popular Posts -->
+                    
                     <div class="p-b-30">
                         <div class="how2 how2-cl4 flex-s-c">
                             <h3 class="f1-m-2 cl3 tab01-title">
@@ -246,7 +251,6 @@
                         </ul>
                     </div>
 
-                    <!-- Tag -->
                     <div>
                         <div class="how2 how2-cl4 flex-s-c m-b-30">
                             <h3 class="f1-m-2 cl3 tab01-title">

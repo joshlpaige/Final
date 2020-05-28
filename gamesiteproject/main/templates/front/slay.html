@@ -1,7 +1,9 @@
-{% extends 'front/base2.html' %}
+{% extends 'front/base.html' %}
+{% load static %}
 
 {% block headblock %}
 <title>{{ site.name }} | Slay the Dragon</title>
+<link rel="stylesheet" href="{% static 'front/my_games/TemplateData/hacks/style.css' %}">
 {% endblock %}
 
 {% block mainblock %}
@@ -21,4 +23,10 @@
 {% endblock %}
 
 
-
+{% block footerblock %}
+<script src="{%static 'front/my_games/TemplateData/slay/UnityProgress.js' %}"></script> 
+    <script src="{%static 'front/my_games/Build/slay/UnityLoader.js' %}"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "{%static 'front/my_games/Build/slay/Adventure.json' %}", {onProgress: UnityProgress});
+    </script>
+  {% endblock %}

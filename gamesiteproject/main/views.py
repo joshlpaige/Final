@@ -10,8 +10,10 @@ from trending.models import Trending
 import random
 from random import randint
 import string
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission, Group
 from manager.models import Manager
+from comment.models import Comment
+
 
 
 
@@ -28,19 +30,17 @@ def home(request):
     cat = Cat.objects.all()
     subcat = SubCat.objects.all()
     lastnews = News.objects.all().order_by('-pk')[:3]
-    lastnews1 = News.objects.all().order_by('-pk')[:1]
+    lastnews2 = News.objects.all().order_by('-pk')[:1]
     popnews = News.objects.all().order_by('-show')[:4]
     popnews2 = News.objects.all().order_by('-show')[:2]
-    popnews3 = News.objects.all().order_by('-show')[:8]
     trending = Trending.objects.all().order_by('-pk')[:5]
-
-    randomobject = Trending.objects.all()[randint(0, len(trending) -1)]
-
-    print(news1)
 
     
 
-    return render(request, 'front/home.html', {'site':site, 'news':news, 'news1':news1, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'lastnews1':lastnews1,'popnews':popnews, 'popnews2':popnews2, 'popnews3':popnews3, 'trending':trending, 'randomobject':randomobject})
+
+    
+
+    return render(request, 'front/home.html', {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'popnews':popnews, 'popnews2':popnews2, 'trending':trending, 'lastnews2':lastnews2})
 
 def about(request):
 
@@ -62,7 +62,15 @@ def panel(request):
 
     if not request.user.is_authenticated:
         return redirect("mylogin")
-        
+
+    perm = 0
+    perms = Permission.objects.filter(user=request.user)
+    for i in perms :
+        if i.codename == "master_user" : perm = 1
+
+    if perm == 0 :
+        error = "Access Denied"
+        return render(request, 'back/error.html', {'error':error})     
 
     return render(request, 'back/home.html')
 
@@ -233,14 +241,39 @@ def msgbox(request):
 def hacker(request):
 
     site = Main.objects.get(pk=1)
+    news = News.objects.all().order_by('-pk')
+    news1 = News.objects.all().order_by('-pk')[:4]
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.all().order_by('-pk')[:3]
+    lastnews2 = News.objects.all().order_by('-pk')[:1]
+    popnews = News.objects.all().order_by('-show')[:4]
+    popnews2 = News.objects.all().order_by('-show')[:2]
+    trending = Trending.objects.all().order_by('-pk')[:5]
 
-    return render(request, 'front/hacker.html', {'site':site})
+
+    
+
+    return render(request, 'front/hacker.html', {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'popnews':popnews, 'popnews2':popnews2, 'trending':trending, 'lastnews2':lastnews2,})
 
 def slay(request):
 
     site = Main.objects.get(pk=1)
+    news = News.objects.all().order_by('-pk')
+    news1 = News.objects.all().order_by('-pk')[:4]
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.all().order_by('-pk')[:3]
+    lastnews2 = News.objects.all().order_by('-pk')[:1]
+    popnews = News.objects.all().order_by('-show')[:4]
+    popnews2 = News.objects.all().order_by('-show')[:2]
+    trending = Trending.objects.all().order_by('-pk')[:5]
     
-    return render(request, 'front/slay.html', {'site':site})
+
+
+    
+
+    return render(request, 'front/slay.html', {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'popnews':popnews, 'popnews2':popnews2, 'trending':trending, 'lastnews2':lastnews2,})
 
 def playground(request):
 
@@ -252,10 +285,8 @@ def playground(request):
 
 def change_pass(request):
     
-    # login check start
     if not request.user.is_authenticated :
         return redirect('mylogin')
-    # login check end
 
     if request.method == 'POST' :
 
@@ -359,4 +390,23 @@ def myregister(request):
             b.save()
 
     return render(request, 'front/login.html')
+
+def news_all_show(request,word):
+    
+    catid = Cat.objects.get(name=word).pk
+    allnews = News.objects.filter(ocatid=catid)
+
+    site = Main.objects.get(pk=1)
+    news = News.objects.filter(act=1).order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.filter(act=1).order_by('-pk')[:3]
+    popnews = News.objects.filter(act=1).order_by('-show')
+    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
+    trending = Trending.objects.all().order_by('-pk')[:5]
+    lastnews2 = News.objects.filter(act=1).order_by('-pk')[:4]
+
+    return render(request, 'front/all_news.html', {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews, 'popnews':popnews, 'popnews2':popnews2, 'trending':trending, 'lastnews2':lastnews2, 'allnews':allnews})
+
+
 

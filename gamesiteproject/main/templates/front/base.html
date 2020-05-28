@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{%static 'front/css/util.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{%static 'front/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{%static 'front/css/about.css' %}">
-    <link rel="stylesheet" href="{% static 'front/my_games/TemplateData/hacks/style.css' %}">
+    
     
 </head>
 <body class="animsition">
@@ -141,11 +141,11 @@
 							{% for gg in cat %}
 							{% if gg.count != 0 %}
 							<li class="mega-menu-item">
-								<a href="category-01.html">{{gg.name}}</a>
+								<a href="{% url 'news_all_show' word=gg.name %}">{{gg.name}}</a>
 
 								<div class="sub-mega-menu">
 									<div class="nav flex-column nav-pills" role="tablist">
-										<a class="nav-link active" data-toggle="pill" href="#news-0" role="tab">All</a>
+										<a class="nav-link active" data-toggle="pill" href="#" role="tab">All</a>
 
 										{% for subcat in subcat %}
 										{% if subcat.catid == gg.pk %}
@@ -366,7 +366,7 @@
                             {% for c in cat %}
                             {% if c.count != 0 %}
                             <li class="how-bor1 p-rl-5 p-tb-10">
-                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                <a href="{% url 'news_all_show' word=c.name %}" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
                                     {{c.name}} ({{c.count}})
                                     
                                 </a>
@@ -390,7 +390,7 @@
         </div>
     </footer>
 
-    <!-- Back to top -->
+
     <div class="btn-back-to-top" id="myBtn">
         <span class="symbol-btn-back-to-top">
             <span class="fas fa-angle-up"></span>
@@ -407,14 +407,9 @@
 
     <script src="{%static 'front/js/main.js' %}"></script>
     <script src="{%static 'front/js/about.js' %}"></script>
-    <script src="{%static 'front/my_games/TemplateData/hacks/UnityProgress.js' %}"></script>
-   
-    <script src="{%static 'front/my_games/Build/hacks/UnityLoader.js' %}"></script>
-    
-    <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "{%static 'front/my_games/Build/hacks/Hacks.json' %}", {onProgress: UnityProgress});
-    </script>
-  
+
+    {% block footerblock %}
+    {% endblock %}
 
 </body>
 
